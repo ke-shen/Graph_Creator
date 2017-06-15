@@ -15,7 +15,13 @@ void add_vertex(char* vertex_list[20], int &vertex_count, char label[20]);
 void addEdge(char* vertex_list[20], float adj_table[20][20], float weight, char label1[20], char label2[20]);
 int vertex_index(char* vertex_list[20], char label[20]);
 void remove_edge(char* vertex_list[20], float adj_table[20][20], char label1[20], char label[20]);
+void remove_vertex(char* vertex_list[20], char label[20], float adj_table[20][20]);
 
+int main() {
+
+
+  return 0;
+}
 //adds a vertex to the graph
 void add_vertex(char* vertex_list[20], int &vertex_count, char label[20])
 {
@@ -80,8 +86,33 @@ void remove_edge(char* vertex_list[20], float adj_table[20][20], char label1[20]
     adj_table[index1][index2] = noEdge;
   }
 }
+//removes a vertex and all edges to and from that vertex
+void remove_vertex(char* vertex_list[20], char label[20], float adj_table[20][20])
+{
+  int index = -1;
+  //finds the index of vertex to be removed
+  index = vertex_index(vertex_list, label);
 
-void removeVertex()
+  //if the vertex is present, clear all the edges that point from that vertex
+  //as well as all edges that point to that vertex
+
+  if(index != -1)
+  {
+    delete vertex_list[index];
+    vertex_list[index];
+    for(int i = 0; i < 20; i++) {
+      adj_table[i][index] = noEdge;
+      adj_table[index][i] = noEdge;
+    }
+    cout << "Vertex and edges to and from the vertex have been cleared" << endl;
+  }
+  else {
+    cout << "Vertex was not found" << endl;
+    return;
+  }
+}
+
+
 
 
 /*
